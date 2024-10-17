@@ -11,10 +11,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Control } from "react-hook-form";
 import { FormFieldType } from "./forms/PatientForm";
-import PhoneInput, { Value } from "react-phone-number-input";
+import PhoneInput from "react-phone-number-input";
 import Image from "next/image";
 import "react-phone-number-input/style.css";
 
+//i added
 type Tagged<A, T> = A & { __tag: T };
 type E164Number = Tagged<string, "E164Number">;
 
@@ -22,7 +23,6 @@ interface CustomProps {
   control: Control<any>;
   fieldType: FormFieldType;
   name: string;
-
   label?: string;
   placeholder?: string;
   iconSrc?: string;
@@ -63,7 +63,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       return (
         <FormControl>
           <PhoneInput
-            defaultContry="AU"
+            defaultContry="au"
             placeholder={placeholder}
             international
             withCountryCallingCode
