@@ -15,39 +15,49 @@ import { FormFieldType } from "./PatientForm";
 import { Doctors } from "@/constants";
 import { SelectItem } from "../ui/select";
 import Image from "next/image";
-import { createAppointment } from "@/lib/actions/appointment.actions";
-import NewAppointment from "@/app/patients/[userId]/new-appointment/page";
+import {
+  createAppointment,
+  updateAppointment,
+} from "@/lib/actions/appointment.actions";
 
-const AppointmentForm = ({
+export const AppointmentForm = ({
   userId,
   patientId,
-  type,
+  type = "create",
+  appointment,
+  setOpen,
 }: {
   userId: string;
   patientId: string;
   type: "create" | "cancel" | "schedule";
   appointment?: Appointment;
+  setOpen?: (open: boolean) => void;
 }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const AppointmentFormValidation = getAppointmentSchema(type);
 
+  //console.log(appointment);
+
   const form = useForm<z.infer<typeof AppointmentFormValidation>>({
     resolver: zodResolver(AppointmentFormValidation),
+
     defaultValues: {
-      primaryPhysician: "",
-      schedule: new Date(),
-      note: "",
-      cancellationReason: "",
+      primaryPhysician: appointment ? appointment.primaryPhysician : "",
+      schedule: appointment
+        ? new Date(appointment?.schedule)
+        : new Date(Date.now()),
+      reason: appointment ? appointment.reason : "",
+      note: appointment?.note || "",
+      cancellationReason: appointment?.cancellationReason || "",
     },
   });
+  //console.log({ userId, patientId, type, appointment });
 
-  const onSubmit = async (
-    values: z.infer<typeof AppointmentFormValidation>
-  ) => {
+  async function onSubmit(values: z.infer<typeof AppointmentFormValidation>) {
     setIsLoading(true);
-
+    //console.log("Im submiting, {type}");
     let status;
     switch (type) {
       case "schedule":
@@ -61,7 +71,7 @@ const AppointmentForm = ({
         break;
     }
 
-    //   console.log("before the try", type, userId, patientId);
+    //console.log({ type });
 
     try {
       if (type === "create" && patientId) {
@@ -83,12 +93,32 @@ const AppointmentForm = ({
             `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
           );
         }
+      } else {
+        //console.log("Updating appointment", patientId);
+        const appointmentToUpdate = {
+          userId,
+          appointmentId: appointment?.id!,
+          appointment: {
+            primaryPhysitian: values?.primaryPhysician,
+            schedule: new Date(values?.schedule),
+            status: status as Status,
+            cancellationReason: values?.cancellationReason,
+          },
+          type,
+        };
+
+        const updatedAppointment = await updateAppointment(appointmentToUpdate);
+
+        if (updatedAppointment) {
+          setOpen && setOpen(false);
+          form.reset();
+        }
       }
     } catch (error) {
       console.log(error);
     }
     setIsLoading(false);
-  };
+  }
 
   let buttonLabel;
 
@@ -96,23 +126,27 @@ const AppointmentForm = ({
     case "cancel":
       buttonLabel = "Cancel Appointment";
       break;
+    case "create":
+      buttonLabel = "Create Appointment";
+      break;
     case "schedule":
-      buttonLabel = "Schedule Appointment";
+      buttonLabel = "Schedule Apppointment";
       break;
     default:
-      buttonLabel = "Submit Apppointment";
+      break;
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
-        <section className="mb-12 space-y-4">
-          <h1 className="header"> New Appointment </h1>
-          <p className="text-dark-700">
-            Request a new appointment in 10 seconds
-          </p>
-        </section>
-
+        {type === "create" && (
+          <section className="mb-12 space-y-4">
+            <h1 className="header"> New Appointment </h1>
+            <p className="text-dark-700">
+              Request a new appointment in 10 seconds
+            </p>
+          </section>
+        )}
         {type !== "cancel" && (
           <>
             <CustomFormField
@@ -170,7 +204,6 @@ const AppointmentForm = ({
             </div>
           </>
         )}
-
         {type === "cancel" && (
           <CustomFormField
             fieldType={FormFieldType.TEXTAREA}
@@ -180,7 +213,6 @@ const AppointmentForm = ({
             placeholder="Urgent meeting came up"
           />
         )}
-
         <SubmitButton
           isLoading={isLoading}
           className={`${

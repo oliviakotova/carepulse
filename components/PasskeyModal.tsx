@@ -5,7 +5,6 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -21,7 +20,7 @@ import { decryptKey, encryptKey } from "@/lib/utils";
 
 import Image from "next/image";
 
-const PasskeyModal = () => {
+export const PasskeyModal = () => {
   const router = useRouter();
   const path = usePathname();
   const [open, setOpen] = useState(true);
@@ -36,7 +35,7 @@ const PasskeyModal = () => {
   useEffect(() => {
     const accessKey = encryptedKey && decryptKey(encryptedKey);
     if (path)
-      if (accessKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
+      if (accessKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY!) {
         setOpen(false);
         router.push("/admin");
       } else {
@@ -111,7 +110,6 @@ const PasskeyModal = () => {
             onClick={(e) => validatePasskey(e)}
             className="shad-primary-btn w-full"
           >
-            {" "}
             Enter Admin Passkey
           </AlertDialogAction>
         </AlertDialogFooter>
