@@ -97,10 +97,10 @@ export const AppointmentForm = ({
         //console.log("Updating appointment", patientId);
         const appointmentToUpdate = {
           userId,
-          appointmentId: appointment?.id!,
+          appointmentId: appointment?.$id!,
           appointment: {
-            primaryPhysitian: values?.primaryPhysician,
-            schedule: new Date(values?.schedule),
+            primaryPhysician: values.primaryPhysician,
+            schedule: new Date(values.schedule),
             status: status as Status,
             cancellationReason: values?.cancellationReason,
           },
