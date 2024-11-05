@@ -101,6 +101,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           </div>
         </section>
 
+        {/* NAME */}
         <CustomFormField
           fieldType={FormFieldType.INPUT}
           control={form.control}
@@ -111,6 +112,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           iconAlt="user"
         />
 
+        {/* EMAIL & PHONE */}
         <div className="flex flex-col gap-6 xl:flex-row">
           <CustomFormField
             fieldType={FormFieldType.INPUT}
@@ -123,6 +125,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             iconAlt="user"
           />
 
+          {/* BirthDate & Gender */}
           <CustomFormField
             fieldType={FormFieldType.PHONE_INPUT}
             control={form.control}
@@ -139,6 +142,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             label="Date of Birth"
           />
 
+          {/* Address & Occupation */}
           <CustomFormField
             fieldType={FormFieldType.SKELETON}
             control={form.control}
