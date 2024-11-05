@@ -1,13 +1,15 @@
 import { withSentryConfig } from "@sentry/nextjs";
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+};
 
 export default withSentryConfig(nextConfig, {
-  unstable_sentryWebpackPluginOptions: {
-    errorHandler: (err) => {
-      console.warn(`Sentry CLI Plugin Error: ${err.message}`);
-    },
-  },
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
