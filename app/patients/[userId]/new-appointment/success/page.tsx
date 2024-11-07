@@ -6,8 +6,8 @@ import { Doctors } from "@/constants";
 import { getAppointment } from "@/lib/actions/appointment.actions";
 import { formatDateTime } from "@/lib/utils";
 
-import * as Sentry from "@sentry/nextjs";
-import { getUser } from "@/lib/actions/patient.actions";
+//import * as Sentry from "@sentry/nextjs";
+//import { getUser } from "@/lib/actions/patient.actions";
 
 const Success = async ({
   searchParams,
