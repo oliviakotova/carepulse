@@ -108,8 +108,8 @@ const RegisterForm = ({ user }: { user: User }) => {
           name="name"
           label="Full Name"
           placeholder="John Doe"
-          //iconSrc="/assets/icons/user.svg"
-          //iconAlt="user"
+          iconSrc="/assets/icons/user.svg"
+          iconAlt="user"
         />
 
         {/* EMAIL & PHONE */}
@@ -120,8 +120,8 @@ const RegisterForm = ({ user }: { user: User }) => {
             name="email"
             label="Email"
             placeholder="johndoe@gmail.com"
-            //iconSrc="/assets/icons/email.svg"
-            //iconAlt="user"
+            iconSrc="/assets/icons/email.svg"
+            iconAlt="user"
           />
 
           {/* BirthDate & Gender */}
