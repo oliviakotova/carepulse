@@ -2,7 +2,6 @@
 
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,7 +17,7 @@ import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { Checkbox } from "./ui/checkbox";
 import "react-datepicker/dist/react-datepicker.css";
 import { E164Number } from "libphonenumber-js/core";
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "react-datepicker";
 import { Textarea } from "./ui/textarea";
 
@@ -44,7 +43,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
     iconAlt,
     placeholder,
     showTimeSelect,
-    dateFormat,
+
     renderSkeleton,
   } = props;
 

@@ -10,10 +10,10 @@ import { z } from "zod";
 import SubmitButton from "../SubmitButton";
 import { Form, FormControl } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
-import { createUser, registerPatient } from "@/lib/actions/patient.actions";
+import { registerPatient } from "@/lib/actions/patient.actions";
 import { FormFieldType } from "../forms/PatientForm";
 import CustomFormField from "../CustomFormField";
-import { PatientFormValidation, UserFormValidation } from "@/lib/validation";
+import { PatientFormValidation } from "@/lib/validation";
 
 import { SelectItem } from "../ui/select";
 import { FileUploader } from "../FileUploader";
@@ -70,7 +70,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           : undefined,
       };
 
-      // @ts-ignore
+      // @ts-expect-error
       const patient = await registerPatient(patientData);
 
       //console.log(patient);
