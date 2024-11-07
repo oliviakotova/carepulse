@@ -74,8 +74,8 @@ const PatientForm = () => {
           name="name"
           label="Full name"
           placeholder="John Doe"
-          //iconSrc="/assets/icons/user.svg"
-          //iconAlt="user"
+          iconSrc="/assets/icons/user.svg"
+          iconAlt="user"
         />
 
         <CustomFormField
@@ -84,8 +84,8 @@ const PatientForm = () => {
           name="email"
           label="Email"
           placeholder="johndoe@gmail.com"
-          //iconSrc="/assets/icons/email.svg"
-          //iconAlt="user"
+          iconSrc="/assets/icons/email.svg"
+          iconAlt="user"
         />
 
         <CustomFormField
