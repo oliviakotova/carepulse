@@ -57,7 +57,7 @@ export const AppointmentForm = ({
   async function onSubmit(values: z.infer<typeof AppointmentFormValidation>) {
     setIsLoading(true);
     //console.log("Im submiting, {type}");
-    let status;
+    let status: string;
     switch (type) {
       case "schedule":
         status = "scheduled";
@@ -189,7 +189,7 @@ export const AppointmentForm = ({
                 control={form.control}
                 name="reason"
                 label="Appointment reason"
-                placeholder="Annual montly check-up"
+                placeholder="Annual monthly check-up"
                 disabled={type === "schedule"}
               />
               <CustomFormField

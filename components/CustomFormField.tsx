@@ -13,9 +13,9 @@ import { FormFieldType } from "./forms/PatientForm";
 import PhoneInput from "react-phone-number-input";
 import Image from "next/image";
 import "react-phone-number-input/style.css";
+import "react-datepicker/dist/react-datepicker.css";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { Checkbox } from "./ui/checkbox";
-import "react-datepicker/dist/react-datepicker.css";
 import { E164Number } from "libphonenumber-js/core";
 import React from "react";
 import DatePicker from "react-datepicker";
@@ -74,7 +74,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       return (
         <FormControl>
           <PhoneInput
-            defaultcontry="au"
+            defaultCountry="AU"
             placeholder={placeholder}
             international
             withCountryCallingCode

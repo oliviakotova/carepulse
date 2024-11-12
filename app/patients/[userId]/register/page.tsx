@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-
 import RegisterForm from "@/components/forms/RegisterForm";
 import { getUser } from "@/lib/actions/patient.actions";
 
@@ -23,7 +22,6 @@ const Register = async ({ params: { userId } }: SearchParamProps) => {
             className="mb-12 h-100 w-fit"
           />
           <RegisterForm user={user} />
-
           <p className="copyright py-12">© 2024 CarePulse</p>
         </div>
       </section>
