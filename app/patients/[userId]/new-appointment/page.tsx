@@ -30,7 +30,9 @@ export default async function NewAppointment({
             type="create"
           />
 
-          <p className="copyright mt-10 py-12">© 2024 CarePulse</p>
+          <p className="copyright py-12">
+            © {new Date().getFullYear()} CarePulse
+          </p>
         </div>
       </section>
 
