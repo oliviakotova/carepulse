@@ -80,7 +80,9 @@ const Success = async ({
           </Link>
         </Button>
 
-        <p className="copyright">© 2024 CarePluse</p>
+        <p className="copyright py-12">
+          © {new Date().getFullYear()} CarePulse
+        </p>
       </div>
     </div>
   );
