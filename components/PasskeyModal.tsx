@@ -69,7 +69,7 @@ export const PasskeyModal = () => {
       <AlertDialogContent className="shad-alert-dialog">
         <AlertDialogHeader>
           <AlertDialogTitle className="flex items-start justify-beetween">
-            Admin Access Verification
+            Admin Access Verification, please use 777777
             <Image
               src="/assets/icons/close.svg"
               alt="close"
